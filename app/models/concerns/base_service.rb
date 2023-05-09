@@ -12,7 +12,9 @@ module BaseService
             return self.all if(TableUpdateInfo.up_to_date?(self.table_name)) || %w[people film].exclude?(self.base_name)
   
             swapi_dev_get_all_method = "#{self.base_name}_all"
-            SwapiDev.class_eval(swapi_dev_get_all_method)[:results].each do |object_hash|
+            swapi_dev_result = SwapiDev.class_eval(swapi_dev_get_all_method)
+            (swapi_dev_result.is_a?(Hash) ? swapi_dev_result[:results] : swapi_dev_result).each do |object_hash|
+                puts object_hash
                 next if (obj_id = self.id_from_url(object_hash)).zero?
 
                 self.update_or_create(object_hash) if (obj = self.find_by(id: obj_id)).nil? || !obj.up_to_date?

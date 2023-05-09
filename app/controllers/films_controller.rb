@@ -1,9 +1,9 @@
 class FilmsController < ApplicationController
-  before_action :set_film, only: %i[ show update destroy ]
+  before_action :set_film, only: %i[ show ]
 
   # GET /films
   def index
-    @films = Film.all
+    @films = Film.all_objects
 
     render json: @films
   end
@@ -13,39 +13,9 @@ class FilmsController < ApplicationController
     render json: @film
   end
 
-  # POST /films
-  def create
-    @film = Film.new(film_params)
-
-    if @film.save
-      render json: @film, status: :created, location: @film
-    else
-      render json: @film.errors, status: :unprocessable_entity
-    end
-  end
-
-  # PATCH/PUT /films/1
-  def update
-    if @film.update(film_params)
-      render json: @film
-    else
-      render json: @film.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /films/1
-  def destroy
-    @film.destroy
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_film
-      @film = Film.find(params[:id])
-    end
-
-    # Only allow a list of trusted parameters through.
-    def film_params
-      params.fetch(:film, {})
+      @film = Film.find_object(params[:id])
     end
 end
