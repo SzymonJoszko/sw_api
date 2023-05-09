@@ -10,8 +10,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_09_071450) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "films", id: false, force: :cascade do |t|
+    t.integer "id", null: false
+    t.json "data_json"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_films_on_id", unique: true
+  end
+
+  create_table "people", id: false, force: :cascade do |t|
+    t.integer "id", null: false
+    t.json "data_json"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_people_on_id", unique: true
+  end
+
+  create_table "planets", id: false, force: :cascade do |t|
+    t.integer "id", null: false
+    t.json "data_json"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_planets_on_id", unique: true
+  end
+
+  create_table "species", id: false, force: :cascade do |t|
+    t.integer "id", null: false
+    t.json "data_json"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_species_on_id", unique: true
+  end
+
+  create_table "starships", id: false, force: :cascade do |t|
+    t.integer "id", null: false
+    t.json "data_json"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_starships_on_id", unique: true
+  end
+
+  create_table "table_update_infos", force: :cascade do |t|
+    t.string "t_name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["t_name"], name: "index_table_update_infos_on_t_name", unique: true
+  end
+
+  create_table "vehicles", id: false, force: :cascade do |t|
+    t.integer "id", null: false
+    t.json "data_json"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["id"], name: "index_vehicles_on_id", unique: true
+  end
 
 end
