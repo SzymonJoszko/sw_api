@@ -1,6 +1,6 @@
 module BaseService
 
-    DATA_SYNC_DELAY = 1.minutes
+    DATA_SYNC_DELAY = 1.month
 
     def up_to_date?
         updated_at >= Time.now - DATA_SYNC_DELAY
