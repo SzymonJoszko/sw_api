@@ -10,6 +10,7 @@ services:
 
   sw_api:
     build: '.'
+    restart: always
     depends_on:
       - 'postgres'
     volumes:
@@ -18,7 +19,7 @@ services:
       - '3000:3000'
     env_file:
       - '/secrets/sw_api.env'
-    command: rails s -b 0.0.0.0
+    command: bash -c "(rake db:migrate:status 2>/dev/null || rake db:setup) && rake db:migrate && rails s -b 0.0.0.0"
 
 volumes:
   postgres: {}
