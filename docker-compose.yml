@@ -10,7 +10,6 @@ services:
 
   sw_api:
     build: '.'
-    restart: always
     depends_on:
       - 'postgres'
     volumes:
